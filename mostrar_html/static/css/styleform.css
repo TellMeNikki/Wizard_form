@@ -1,0 +1,29 @@
+.container {
+  margin-top: 4rem;
+  background-color: #000000;
+  width: fit-content;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+#contenedor {
+  margin: 0 auto;
+  width: fit-content;
+  background-color: #000000;
+}
+#formulario {
+  min-width: 60rem;
+  color: rgb(241, 241, 241);
+}
+
+.bookmark {
+  width: 6rem;
+  height: 21rem;
+}
+
+.form-control {
+  width: 12rem;
+}
+
+.table {
+  color: aliceblue;
+}

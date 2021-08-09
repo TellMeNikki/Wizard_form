@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Nicole Araya">
+  <title>Wizard Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styleform.css' %}">
+</head>
+
+<body>
+  {% block content %}
+  <div class="container">
+    <div class="row text-light" id='contenedor'>
+      <img class='bookmark right' src='../static/img/bookmark_hp.png'>
+      <div class="col" id='formulario'>
+        <h4 class="mb-4">Agrega un Mago</h4>
+
+        <!-- formulario-->
+        <form class="mt-3" action="/forms/" method='POST'>
+          {% csrf_token %}
+          <div class="row px-2 mt-2" id='rowf'>
+            <div class="col-6 px-2">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name='nombre'>
+            </div>
+            <div class="col-6 px-2 mt-2">
+              <label for="casa">Casa</label>
+              <select class="form-control" id='casa' name='casa'>
+                <option>Gryffindor</option>
+                <option>Hufflepuff</option>
+                <option>Ravenclaw</option>
+                <option>Slytherin</option>
+              </select>  
+            </div>
+          </div>
+          <div class="row px-2 mt-2" id='rowf'>  
+            <div class="col-6 px-2">
+              <label for="mascota" class="form-label">Pet</label>
+              <input type="text" class="form-control" id='mascota' name='mascota'>
+            </div>
+            <div class="col-6 px-2">
+              <label for="año" class="form-label">Year</label>
+              <input type="text" class="form-control" id='año' name='año'>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-light mt-3 px-5 mx-1" id="btn_enviar">Crear</button>
+        </form>
+      </div>
+      <img class='bookmark left' src='../static/img/bookmark_hp.png'>
+    </div>
+    <!-- Tabla-->
+    <div class="tabla mt-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Casa</th>
+            <th scope="col">Mascotas</th>
+            <th scope="col">Años</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for wizard in wizards %}
+          <tr>
+            <th scope="row">{{wizard.id}}</th>
+            <td>{{wizard.name}}</td>
+            <td>{{wizard.house}}</td>
+            <td>{{wizard.pet}}</td>
+            <td>{{wizard.year}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+      <script src="{% static 'js/index.js' %}"></script>
+  {% endblock %}
+</body>
+</html>
